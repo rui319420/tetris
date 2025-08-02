@@ -23,10 +23,8 @@ const SHAPES = {
   },
 };
 export default function Home() {
-  const [board, setBoard] = useState(() => {
-    return Array(rows)
-      .fill(0)
-      .map(() => Array(cols).fill(0));
+  const [board, setBoard] = useState<number[][]>(() => {
+    return Array.from({ length: rows }, () => Array<number>(cols).fill(0));
   });
 
   const [piece, setPiece] = useState({ x: 3, y: 0, shape: SHAPES.I.shape });
