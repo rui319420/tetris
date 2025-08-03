@@ -49,6 +49,12 @@ const SHAPES = {
       [1, 1, 0],
     ],
   },
+  T: {
+    shape: [
+      [0, 1, 0],
+      [1, 1, 1],
+    ],
+  },
 };
 
 const SHAPE_KEYS = Object.keys(SHAPES);
@@ -86,6 +92,59 @@ export default function Home() {
     },
     [board], // boardが変わった時だけ、この関数を再生成する
   );
+
+  // handleKeyDown関数をuseCallbackで囲みます
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      setPiece((prevPiece) => {
+        let nextPiece = { ...prevPiece };
+
+        // --- キーの種類によって処理を分岐 ---
+        switch (e.key) {
+          case 'ArrowLeft':
+            nextPiece = { ...prevPiece, x: prevPiece.x - 1 };
+            break;
+
+          case 'ArrowRight':
+            nextPiece = { ...prevPiece, x: prevPiece.x + 1 };
+            break;
+
+          case 'ArrowDown':
+            nextPiece = { ...prevPiece, y: prevPiece.y + 1 };
+            break;
+
+          case 'ArrowUp': {
+            // 回転ロジック
+            const rotatedShape = prevPiece.shape[0].map((_, colIndex) =>
+              prevPiece.shape.map((row) => row[colIndex]).reverse(),
+            );
+            nextPiece = { ...prevPiece, shape: rotatedShape };
+            break;
+          }
+
+          default:
+            return prevPiece;
+        }
+
+        // --- 移動・回転が可能かチェック ---
+        if (valid(nextPiece)) {
+          return nextPiece;
+        } else {
+          return prevPiece;
+        }
+      });
+    },
+    [valid], // valid関数に依存させる
+  );
+
+  // ↓↓↓ このキーボード操作を登録するuseEffectを新しく追加します ↓↓↓
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   // 落下処理
   useEffect(() => {
