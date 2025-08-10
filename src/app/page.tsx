@@ -22,7 +22,6 @@ const SHAPES = {
       [1, 1],
     ],
   },
-  // 他のミノの定義...
   L: {
     shape: [
       [1, 0],
@@ -67,6 +66,11 @@ export default function Home() {
   const [piece, setPiece] = useState(() => {
     const randomShapeKey = SHAPE_KEYS[Math.floor(Math.random() * SHAPE_KEYS.length)];
     return { x: 3, y: 0, shape: SHAPES[randomShapeKey as keyof typeof SHAPES].shape };
+  });
+
+  const [nextPiece, setNextPiece] = useState(() => {
+    const randomShapeKey = SHAPE_KEYS[Math.floor(Math.random() * SHAPE_KEYS.length)];
+    return { shape: SHAPES[randomShapeKey as keyof typeof SHAPES].shape };
   });
 
   // 衝突判定: useCallbackで囲む
@@ -182,11 +186,16 @@ export default function Home() {
           });
 
           // 新しいピースをランダムに生成
-          const randomShapeKey = SHAPE_KEYS[Math.floor(Math.random() * SHAPE_KEYS.length)];
+          const newNextPieceShapeKey = SHAPE_KEYS[Math.floor(Math.random() * SHAPE_KEYS.length)];
+          const newNextPiece = {
+            shape: SHAPES[newNextPieceShapeKey as keyof typeof SHAPES].shape,
+          };
+          setNextPiece(newNextPiece);
+
           return {
             x: 3,
             y: 0,
-            shape: SHAPES[randomShapeKey as keyof typeof SHAPES].shape,
+            shape: nextPiece.shape, // nextPieceの形を使う
           };
         }
       });
@@ -195,41 +204,55 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [valid]); // valid関数を依存配列に追加
 
-  /*
-  // 次のステップで実装するので一旦コメントアウト
-  const newBoard = structuredClone(board);
-
-  const moveBlockRight = () => {
-    // ...
-  };
-  */
-
   return (
-    // JSX部分は変更なし
     <>
       <div className={styles.container}>
-        <div className={styles.background}>
-          <div className={styles.board}>
-            {board.map((row, y) =>
-              row.map((col, x) => {
-                let isPieceBlock = false;
-                if (piece) {
-                  piece.shape.forEach((pieceRow, py) => {
-                    pieceRow.forEach((pieceCell, px) => {
-                      if (pieceCell === 1 && y === piece.y + py && x === piece.x + px) {
-                        isPieceBlock = true;
-                      }
+        {/* gameAreaでメインボードとNEXT表示を囲む */}
+        <div className={styles.gameArea}>
+          <div className={styles.background}>
+            <div className={styles.board}>
+              {/* --- ここからがメインボードの描画 --- */}
+              {board.map((row, y) =>
+                row.map((col, x) => {
+                  let isPieceBlock = false;
+                  if (piece) {
+                    piece.shape.forEach((pieceRow, py) => {
+                      pieceRow.forEach((pieceCell, px) => {
+                        if (pieceCell === 1 && y === piece.y + py && x === piece.x + px) {
+                          isPieceBlock = true;
+                        }
+                      });
                     });
-                  });
-                }
-                const shouldDisplayBlock = col === 1 || isPieceBlock;
-                return (
-                  <div className={styles.cell} key={`${x}-${y}`}>
-                    {shouldDisplayBlock && <div className={styles.block} />}
-                  </div>
-                );
-              }),
-            )}
+                  }
+                  const shouldDisplayBlock = col === 1 || isPieceBlock;
+                  return (
+                    <div className={styles.cell} key={`${x}-${y}`}>
+                      {shouldDisplayBlock && <div className={styles.block} />}
+                    </div>
+                  );
+                }),
+              )}
+            </div>
+          </div>
+
+          {/* --- ここからがNEXTブロックの描画 --- */}
+          <div className={styles.nextPieceContainer}>
+            <h4>NEXT</h4>
+            <div className={styles.nextPieceBoard}>
+              {nextPiece &&
+                Array.from({ length: 4 }).map((_, y) =>
+                  Array.from({ length: 4 }).map((_, x) => {
+                    const isPieceBlock = nextPiece.shape.some((row, py) =>
+                      row.some((cell, px) => cell === 1 && y === py && x === px),
+                    );
+                    return (
+                      <div className={styles.cell} key={`${x}-${y}`}>
+                        {isPieceBlock && <div className={styles.block} />}
+                      </div>
+                    );
+                  }),
+                )}
+            </div>
           </div>
         </div>
       </div>
