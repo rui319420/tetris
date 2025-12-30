@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { MINO } from '../components/mino';
 import styles from './page.module.css';
 
@@ -11,8 +12,14 @@ const BOARD = Array(cols * rows).fill(0);
 console.log(MINO.I);
 
 export default function Home() {
-  const currentMino = MINO.I;
+  const [currentMino, setCurrentMino] = useState<number[][]>(MINO.I);
   const position = { x: 3, y: 0 };
+
+  const rotateMino = () => {
+    const newMino = currentMino.map((_, index) => currentMino.map((row) => row[index]).reverse());
+    setCurrentMino(newMino);
+  };
+
   const getCellClassName = (index: number) => {
     const x = index % cols;
     const y = Math.floor(index / cols);
@@ -30,6 +37,20 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <div>
+        <button
+          style={{
+            height: '50px',
+            width: '200px',
+            fontSize: '30px',
+            marginBottom: '10px',
+            marginTop: '20px',
+          }}
+          onClick={rotateMino}
+        >
+          回るよ
+        </button>
+      </div>
       <div className={styles.board}>
         {BOARD.map((row, index) => (
           <div key={index} className={getCellClassName(index)} />
