@@ -12,7 +12,7 @@
   flex-wrap: wrap;
   width: 200px;
   height: 400px;
-  background-color: rgb(6 26 73);
+  background-color: #000;
 }
 
 .cell {
@@ -22,6 +22,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
+  border: 0.2px solid #5c5c5c;
 }
 
 .block {
@@ -43,6 +44,18 @@
   border-bottom: 3px solid #028b97;
   border-left: 3px solid #5acad9;
   background-blend-mode: normal;
+}
+
+.empty {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
+
+.mino {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 }
 
 .gameArea {
