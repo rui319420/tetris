@@ -1,20 +1,10 @@
 .container {
-  display: center;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   min-height: 100vh;
   padding: 0 0.5rem;
-}
-
-.background {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
 }
 
 .board {
@@ -22,7 +12,7 @@
   flex-wrap: wrap;
   width: 200px;
   height: 400px;
-  background-color: rgb(1 166 89);
+  background-color: rgb(6 26 73);
 }
 
 .cell {
@@ -48,28 +38,4 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-}
-
-.nextPieceContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100%;
-  background-color: #222;
-  border-left: 1px solid #555;
-}
-
-.nextPieceContainer h4 {
-  margin: 0 0 10px;
-}
-
-.nextPieceBoard {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80px; /* 20px * 4 */
-  height: 80px; /* 20px * 4 */
-  background-color: #333;
-  border: 1px solid #555;
 }
