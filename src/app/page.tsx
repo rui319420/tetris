@@ -13,7 +13,7 @@ console.log(MINO.I);
 
 export default function Home() {
   const [currentMino, setCurrentMino] = useState<number[][]>(MINO.I);
-  const position = { x: 3, y: 0 };
+  const [position, setPosition] = useState({ x: 3, y: 0 });
 
   const rotateMino = () => {
     const newMino = currentMino.map((_, index) => currentMino.map((row) => row[index]).reverse());
@@ -35,6 +35,20 @@ export default function Home() {
     return styles.cell;
   };
 
+  const moveDown = () => {
+    setPosition((prev) => ({
+      ...prev,
+      y: prev.y + 1,
+    }));
+  };
+
+  const moveRight = () => {
+    setPosition((prev) => ({
+      x: prev.x + 1,
+      ...prev,
+    }));
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -49,6 +63,34 @@ export default function Home() {
           onClick={rotateMino}
         >
           回るよ
+        </button>
+      </div>
+      <div>
+        <button
+          style={{
+            height: '50px',
+            width: '200px',
+            fontSize: '30px',
+            marginBottom: '10px',
+            marginTop: '20px',
+          }}
+          onClick={moveDown}
+        >
+          落ちるよ
+        </button>
+      </div>
+      <div>
+        <button
+          style={{
+            height: '50px',
+            width: '200px',
+            fontSize: '30px',
+            marginBottom: '10px',
+            marginTop: '20px',
+          }}
+          onClick={moveRight}
+        >
+          落ちるよ
         </button>
       </div>
       <div className={styles.board}>
