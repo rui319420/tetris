@@ -49,6 +49,13 @@ export default function Home() {
     }));
   };
 
+  const moveLeft = () => {
+    setPosition((prev) => ({
+      ...prev,
+      x: prev.x - 1,
+    }));
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -90,7 +97,19 @@ export default function Home() {
           }}
           onClick={moveRight}
         >
-          落ちるよ
+          右です
+        </button>
+        <button
+          style={{
+            height: '50px',
+            width: '200px',
+            fontSize: '30px',
+            marginBottom: '10px',
+            marginTop: '20px',
+          }}
+          onClick={moveLeft}
+        >
+          左です
         </button>
       </div>
       <div className={styles.board}>
