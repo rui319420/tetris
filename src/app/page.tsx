@@ -44,8 +44,8 @@ export default function Home() {
 
   const moveRight = () => {
     setPosition((prev) => ({
-      x: prev.x + 1,
       ...prev,
+      x: prev.x + 1,
     }));
   };
 
