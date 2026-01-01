@@ -35,6 +35,8 @@ export default function Home() {
     return styles.cell;
   };
 
+  const moveBottom = () => {};
+
   const moveDown = () => {
     setPosition((prev) => ({
       ...prev,
@@ -78,12 +80,22 @@ export default function Home() {
             height: '50px',
             width: '200px',
             fontSize: '30px',
-            marginBottom: '10px',
             marginTop: '20px',
           }}
-          onClick={moveDown}
+          onClick={moveLeft}
         >
-          落ちるよ
+          左です
+        </button>
+        <button
+          style={{
+            height: '50px',
+            width: '200px',
+            fontSize: '30px',
+            marginTop: '20px',
+          }}
+          onClick={moveRight}
+        >
+          右です
         </button>
       </div>
       <div>
@@ -93,23 +105,10 @@ export default function Home() {
             width: '200px',
             fontSize: '30px',
             marginBottom: '10px',
-            marginTop: '20px',
           }}
-          onClick={moveRight}
+          onClick={moveDown}
         >
-          右です
-        </button>
-        <button
-          style={{
-            height: '50px',
-            width: '200px',
-            fontSize: '30px',
-            marginBottom: '10px',
-            marginTop: '20px',
-          }}
-          onClick={moveLeft}
-        >
-          左です
+          落ちるよ
         </button>
       </div>
       <div className={styles.board}>
