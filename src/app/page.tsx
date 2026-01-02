@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Manipulate } from '../components/manipulate';
 import { MINO } from '../components/mino';
 import styles from './page.module.css';
 
@@ -14,11 +15,6 @@ console.log(MINO.I);
 export default function Home() {
   const [currentMino, setCurrentMino] = useState<number[][]>(MINO.I);
   const [position, setPosition] = useState({ x: 3, y: 0 });
-
-  const rotateMino = () => {
-    const newMino = currentMino.map((_, index) => currentMino.map((row) => row[index]).reverse());
-    setCurrentMino(newMino);
-  };
 
   const getCellClassName = (index: number) => {
     const x = index % cols;
@@ -35,82 +31,14 @@ export default function Home() {
     return styles.cell;
   };
 
-  const moveBottom = () => {};
-
-  const moveDown = () => {
-    setPosition((prev) => ({
-      ...prev,
-      y: prev.y + 1,
-    }));
-  };
-
-  const moveRight = () => {
-    setPosition((prev) => ({
-      ...prev,
-      x: prev.x + 1,
-    }));
-  };
-
-  const moveLeft = () => {
-    setPosition((prev) => ({
-      ...prev,
-      x: prev.x - 1,
-    }));
-  };
-
   return (
     <div className={styles.container}>
-      <div>
-        <button
-          style={{
-            height: '50px',
-            width: '200px',
-            fontSize: '30px',
-            marginBottom: '10px',
-            marginTop: '20px',
-          }}
-          onClick={rotateMino}
-        >
-          回るよ
-        </button>
-      </div>
-      <div>
-        <button
-          style={{
-            height: '50px',
-            width: '200px',
-            fontSize: '30px',
-            marginTop: '20px',
-          }}
-          onClick={moveLeft}
-        >
-          左です
-        </button>
-        <button
-          style={{
-            height: '50px',
-            width: '200px',
-            fontSize: '30px',
-            marginTop: '20px',
-          }}
-          onClick={moveRight}
-        >
-          右です
-        </button>
-      </div>
-      <div>
-        <button
-          style={{
-            height: '50px',
-            width: '200px',
-            fontSize: '30px',
-            marginBottom: '10px',
-          }}
-          onClick={moveDown}
-        >
-          落ちるよ
-        </button>
-      </div>
+      <Manipulate
+        position={position}
+        setPosition={setPosition}
+        currentMino={currentMino}
+        setCurrentMino={setCurrentMino}
+      />
       <div className={styles.board}>
         {BOARD.map((row, index) => (
           <div key={index} className={getCellClassName(index)} />
