@@ -35,6 +35,24 @@ export default function Home() {
     return false;
   };
 
+  const placeMino = () => {
+    const newBoard = [...board];
+
+    currentMino.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value === 1) {
+          const index = (position.y + y) * cols + (position.x + x);
+          if (index >= 0 && index < newBoard.length) {
+            newBoard[index] = 1;
+          }
+        }
+      });
+    });
+    setBoard(newBoard);
+    setCurrentMino(MINO.I);
+    setPosition({ x: 3, y: 0 });
+  };
+
   const getCellClassName = (index: number) => {
     const x = index % cols;
     const y = Math.floor(index / cols);
