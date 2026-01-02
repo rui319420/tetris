@@ -1,8 +1,13 @@
 'use client';
 
-import type { ManipulateProps } from '../types';
+type Props = {
+  onMoveLeft: () => void;
+  onMoveRight: () => void;
+  onMoveDown: () => void;
+  onRotate: () => void;
+};
 
-export function Manipulate({ onMoveLeft, onMoveRight, onMoveDown, onRotate }: ManipulateProps) {
+export function Manipulate({ onMoveLeft, onMoveRight, onMoveDown, onRotate }: Props) {
   return (
     <div>
       <div>

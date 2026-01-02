@@ -53,6 +53,36 @@ export default function Home() {
     setPosition({ x: 3, y: 0 });
   };
 
+  const handleMoveLeft = () => {
+    const newPos = { ...position, x: position.x - 1 };
+    if (!checkCollision(currentMino, newPos)) {
+      setPosition(newPos);
+    }
+  };
+
+  const handleMoveRight = () => {
+    const newPos = { ...position, x: position.x + 1 };
+    if (!checkCollision(currentMino, newPos)) {
+      setPosition(newPos);
+    }
+  };
+
+  const handleMoveDown = () => {
+    const newPos = { ...position, y: position.y + 1 };
+    if (checkCollision(currentMino, newPos)) {
+      placeMino();
+    } else {
+      setPosition(newPos);
+    }
+  };
+
+  const handleRotate = () => {
+    const newMino = currentMino.map((_, index) => currentMino.map((row) => row[index]).reverse());
+    if (!checkCollision(newMino, position)) {
+      setCurrentMino(newMino);
+    }
+  };
+
   const getCellClassName = (index: number) => {
     const x = index % cols;
     const y = Math.floor(index / cols);
@@ -74,10 +104,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Manipulate
-        position={position}
-        setPosition={setPosition}
-        currentMino={currentMino}
-        setCurrentMino={setCurrentMino}
+        onMoveDown={handleMoveDown}
+        onMoveRight={handleMoveRight}
+        onMoveLeft={handleMoveLeft}
+        onRotate={handleRotate}
       />
       <div className={styles.board}>
         {board.map((row, index) => (
