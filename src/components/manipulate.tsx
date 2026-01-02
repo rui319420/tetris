@@ -1,43 +1,8 @@
 'use client';
 
-import type { Dispatch, SetStateAction } from 'react';
-type Props = {
-  position: { x: number; y: number };
-  setPosition: Dispatch<SetStateAction<{ x: number; y: number }>>;
-  currentMino: number[][];
-  setCurrentMino: Dispatch<SetStateAction<number[][]>>;
-};
+import type { ManipulateProps } from '../types';
 
-export function Manipulate({ position, setPosition, currentMino, setCurrentMino }: Props) {
-  const rotateMino = () => {
-    const newMino = currentMino.map((_, index) => currentMino.map((row) => row[index]).reverse());
-    setCurrentMino(newMino);
-  };
-
-  const moveBottom = () => {
-    setPosition((prev) => {});
-  };
-
-  const moveDown = () => {
-    setPosition((prev) => ({
-      ...prev,
-      y: prev.y + 1,
-    }));
-  };
-
-  const moveRight = () => {
-    setPosition((prev) => ({
-      ...prev,
-      x: prev.x + 1,
-    }));
-  };
-
-  const moveLeft = () => {
-    setPosition((prev) => ({
-      ...prev,
-      x: prev.x - 1,
-    }));
-  };
+export function Manipulate({ onMoveLeft, onMoveRight, onMoveDown, onRotate }: ManipulateProps) {
   return (
     <div>
       <div>
@@ -49,7 +14,7 @@ export function Manipulate({ position, setPosition, currentMino, setCurrentMino 
             marginBottom: '10px',
             marginTop: '20px',
           }}
-          onClick={rotateMino}
+          onClick={onRotate}
         >
           回るよ
         </button>
@@ -62,7 +27,7 @@ export function Manipulate({ position, setPosition, currentMino, setCurrentMino 
             fontSize: '30px',
             marginTop: '20px',
           }}
-          onClick={moveLeft}
+          onClick={onMoveLeft}
         >
           左です
         </button>
@@ -73,7 +38,7 @@ export function Manipulate({ position, setPosition, currentMino, setCurrentMino 
             fontSize: '30px',
             marginTop: '20px',
           }}
-          onClick={moveRight}
+          onClick={onMoveRight}
         >
           右です
         </button>
@@ -89,7 +54,7 @@ export function Manipulate({ position, setPosition, currentMino, setCurrentMino 
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          onClick={moveDown}
+          onClick={onMoveDown}
         >
           落ちるよ
         </button>

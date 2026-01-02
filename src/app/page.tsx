@@ -65,6 +65,9 @@ export default function Home() {
         return styles.block;
       }
     }
+    if (board[index] === 1) {
+      return styles.block;
+    }
     return styles.cell;
   };
 
@@ -96,6 +99,19 @@ export default function Home() {
       </div>
       <div className={styles.mino}>
         {MINO.T.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={styles.block} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.N.map((row, y) => (
           <div key={y} style={{ display: 'flex' }}>
             {row.map((cell, x) => {
               if (cell === 1) {
