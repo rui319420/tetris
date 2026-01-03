@@ -8,11 +8,14 @@ import styles from './page.module.css';
 const rows = 20;
 const cols = 10;
 
+type MinoType = keyof typeof MINO;
+
 console.log(MINO.I);
 
 export default function Home() {
-  const [board, setBoard] = useState<number[]>(Array(cols * rows).fill(0));
+  const [board, setBoard] = useState<(MinoType | 0)[]>(Array(cols * rows).fill(0));
   const [currentMino, setCurrentMino] = useState<number[][]>(MINO.I);
+  const [currentMinoType, setCurrentMinoType] = useState<MinoType>('I');
   const [position, setPosition] = useState({ x: 3, y: 0 });
 
   const checkCollision = (mino: number[][], pos: { x: number; y: number }) => {
@@ -26,7 +29,7 @@ export default function Home() {
             return true;
           }
 
-          if (boardY >= 0 && board[boardY * cols + boardX] === 1) {
+          if (boardY >= 0 && board[boardY * cols + boardX] !== 0) {
             return true;
           }
         }
@@ -43,13 +46,14 @@ export default function Home() {
         if (value === 1) {
           const index = (position.y + y) * cols + (position.x + x);
           if (index >= 0 && index < newBoard.length) {
-            newBoard[index] = 1;
+            newBoard[index] = currentMinoType;
           }
         }
       });
     });
     setBoard(newBoard);
     setCurrentMino(MINO.I);
+    setCurrentMinoType('I');
     setPosition({ x: 3, y: 0 });
   };
 
@@ -92,11 +96,13 @@ export default function Home() {
 
     if (minoY >= 0 && minoY < currentMino.length && minoX >= 0 && minoX < currentMino[0].length) {
       if (currentMino[minoY][minoX] === 1) {
-        return styles.block;
+        return `${styles.block} ${styles[currentMinoType]}`;
       }
     }
-    if (board[index] === 1) {
-      return styles.block;
+
+    if (board[index] !== 0) {
+      const type = board[index];
+      return `${styles.block} ${styles[type]}`;
     }
     return styles.cell;
   };
@@ -119,33 +125,7 @@ export default function Home() {
           <div key={y} style={{ display: 'flex' }}>
             {row.map((cell, x) => {
               if (cell === 1) {
-                return <div key={x} className={styles.block} />;
-              } else {
-                return <div key={x} className={styles.empty} />;
-              }
-            })}
-          </div>
-        ))}
-      </div>
-      <div className={styles.mino}>
-        {MINO.T.map((row, y) => (
-          <div key={y} style={{ display: 'flex' }}>
-            {row.map((cell, x) => {
-              if (cell === 1) {
-                return <div key={x} className={styles.block} />;
-              } else {
-                return <div key={x} className={styles.empty} />;
-              }
-            })}
-          </div>
-        ))}
-      </div>
-      <div className={styles.mino}>
-        {MINO.N.map((row, y) => (
-          <div key={y} style={{ display: 'flex' }}>
-            {row.map((cell, x) => {
-              if (cell === 1) {
-                return <div key={x} className={styles.block} />;
+                return <div key={x} className={`${styles.block} ${styles.I}`} />;
               } else {
                 return <div key={x} className={styles.empty} />;
               }
