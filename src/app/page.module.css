@@ -33,6 +33,7 @@
   background-blend-mode: normal;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .I {
   background-color: #00bbda;
   background-image:
@@ -49,6 +50,7 @@
   border-left: 3px solid #5acad9;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .O {
   background-color: #e6b81a;
   background-image:
@@ -65,6 +67,7 @@
   border-left: 3px solid #d9c45a;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .N {
   background-color: #dc3838;
   background-image:
@@ -81,6 +84,7 @@
   border-left: 3px solid #ff5a5a;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .Z {
   background-color: #79cf2d;
   background-image:
@@ -97,6 +101,7 @@
   border-left: 3px solid #44ad24;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .T {
   background-color: #a72dcf;
   background-image:
@@ -113,6 +118,7 @@
   border-left: 3px solid #d446ff;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .L {
   background-color: #cf7e2d;
   background-image:
@@ -129,6 +135,7 @@
   border-left: 3px solid #ffc146;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .J {
   background-color: #432dcf;
   background-image:
