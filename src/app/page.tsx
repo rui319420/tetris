@@ -133,6 +133,84 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <div className={styles.mino}>
+        {MINO.N.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.N}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.O.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.O}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.Z.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.Z}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.T.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.T}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.L.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.L}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
+      <div className={styles.mino}>
+        {MINO.J.map((row, y) => (
+          <div key={y} style={{ display: 'flex' }}>
+            {row.map((cell, x) => {
+              if (cell === 1) {
+                return <div key={x} className={`${styles.block} ${styles.J}`} />;
+              } else {
+                return <div key={x} className={styles.empty} />;
+              }
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

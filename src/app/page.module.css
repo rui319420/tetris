@@ -58,26 +58,91 @@
       rgb(255 255 255 / 10%) 70%,
       transparent 100%
     ),
-    radial-gradient(circle at 100% 100%, #00cbee 72%, transparent 90%);
+    radial-gradient(circle at 100% 100%, #e8b119 72%, transparent 90%);
   border-top: 3px solid #f2d150;
-  border-right: 3px solid #0595a0;
-  border-bottom: 3px solid #028b97;
-  border-left: 3px solid #5acad9;
+  border-right: 3px solid #aca915;
+  border-bottom: 3px solid #eab219;
+  border-left: 3px solid #d9c45a;
 }
 
 .N {
+  background-color: #dc3838;
+  background-image:
+    linear-gradient(
+      150deg,
+      rgb(255 255 255 / 90%) 20%,
+      rgb(255 255 255 / 10%) 70%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 100% 100%, #d63b3b 72%, transparent 90%);
+  border-top: 3px solid #ff6363;
+  border-right: 3px solid #911111;
+  border-bottom: 3px solid #851414;
+  border-left: 3px solid #ff5a5a;
 }
 
 .Z {
+  background-color: #79cf2d;
+  background-image:
+    linear-gradient(
+      150deg,
+      rgb(255 255 255 / 90%) 20%,
+      rgb(255 255 255 / 10%) 70%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 100% 100%, #7edd31 72%, transparent 90%);
+  border-top: 3px solid #52ff55;
+  border-right: 3px solid #2cc029;
+  border-bottom: 3px solid #26bd3a;
+  border-left: 3px solid #44ad24;
 }
 
 .T {
+  background-color: #a72dcf;
+  background-image:
+    linear-gradient(
+      150deg,
+      rgb(255 255 255 / 90%) 20%,
+      rgb(255 255 255 / 10%) 70%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 100% 100%, #cd2ecd 72%, transparent 90%);
+  border-top: 3px solid #d84bff;
+  border-right: 3px solid #82218b;
+  border-bottom: 3px solid #791e9a;
+  border-left: 3px solid #d446ff;
 }
 
 .L {
+  background-color: #cf7e2d;
+  background-image:
+    linear-gradient(
+      150deg,
+      rgb(255 255 255 / 90%) 20%,
+      rgb(255 255 255 / 10%) 70%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 100% 100%, #cd852e 72%, transparent 90%);
+  border-top: 3px solid #ffcd44;
+  border-right: 3px solid #8b6421;
+  border-bottom: 3px solid #8e611e;
+  border-left: 3px solid #ffc146;
 }
 
 .J {
+  background-color: #432dcf;
+  background-image:
+    linear-gradient(
+      150deg,
+      rgb(255 255 255 / 90%) 20%,
+      rgb(255 255 255 / 10%) 70%,
+      transparent 100%
+    ),
+    radial-gradient(circle at 100% 100%, #2e48cd 72%, transparent 90%);
+  border-top: 3px solid #448fff;
+  border-right: 3px solid #23218b;
+  border-bottom: 3px solid #221e8e;
+  border-left: 3px solid #4681ff;
 }
 
 .empty {
