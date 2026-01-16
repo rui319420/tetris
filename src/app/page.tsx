@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Manipulate } from '../components/manipulate';
 import { MINO } from '../components/mino';
 import styles from './page.module.css';
@@ -106,6 +106,15 @@ export default function Home() {
     }
     return styles.cell;
   };
+
+  useEffect(() => {
+    const autoDrop = setInterval(() => {
+      handleMoveDown();
+    }, 500);
+    return () => {
+      clearInterval(autoDrop);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
